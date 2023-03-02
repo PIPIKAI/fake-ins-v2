@@ -1,0 +1,49 @@
+syntax ="v1"
+
+import (
+	"./user/user.api"
+	"./user/account.api"
+)
+
+@server(
+	group : user
+	prefix: v1/user
+)
+
+service usercenter {
+	@doc "register"
+	@handler register
+	post /register(RegisterReq) returns(RegisterResp)
+	
+	@doc "login"
+	@handler login
+	post /login(LoginReq) returns(LoginResp)
+}
+
+@server(
+	group : user
+	prefix: v1/user
+	jwt: JwtAuth
+)
+
+service usercenter {
+	@doc "info"
+	@handler info
+	post /info(InfoReq) returns(InfoResp)
+	
+	@doc "edit user info"
+	@handler editInfo
+	put /info returns(UserDto)
+	
+	@doc "logout"
+	@handler logout
+	post /logout returns()
+	
+	@doc "find user by username"
+	@handler getByUserName
+	post /getby/username/:username returns(UserDto)
+	
+	@doc "find user by uid"
+	@handler getByUid
+	post /getby/uid/:uid returns(UserDto)
+}

@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+package pb;
+
+message UserDto{
+    int64 id =1; 
+	string username = 2; 
+	string name= 3; 
+	string photo= 4;   
+	string website = 5;    
+	string bio=6;   
+	int64 watchsCounts =7;  
+	int64 fansCounts = 8; 
+	int64 postsCounts =9; 
+	bool isWatched = 10;    
+};
+
+message InfoReq{
+    int64 id = 1;
+}
+message InfoResp{
+    int64 id =1; 
+	string username = 2; 
+	string telephone= 3;
+	string name= 4;
+    string gender=5;
+    string email=6;
+    string photo=7;
+	string website = 8;    
+	string bio=9;   
+    string birthday=10;
+	int64 watchsCounts =11;  
+	int64 fansCounts = 12; 
+    int64 commentsCounts= 13;
+	int64 postsCounts =14; 
+}
+
+message EditInfoReq{
+    string username = 1; 
+    string name= 2;
+    string photoBase64=3;
+    string photourl=4;
+    string website=5;
+    string bio=6;
+    string gender=7;
+    string birthday=8;
+}
+message EditInfoResp {
+    bool status=1;
+    int64 updataTime=2;
+}
+
+message AttemptReq{
+    string username=1;
+    string name=2;
+    string password=3;
+    string emailOrPhone=4;
+}
+message AttemptResp{
+    bool ok =1;
+    string reason =2;
+}
+
+message RegisterReq{
+    string username=1;
+    string name=2;
+    string password=3;
+    string emailOrPhone=4;
+    string telephone=5;
+    string email=6;
+    string birthday=7;
+    string code=8;
+}
+message RegisterResp {
+    string accessToken=1;
+    int64 accessExpire=2;
+    int64 refreshAfter=3;
+}
+message LoginReq{
+    string emailOrPhoneOrUsername=1;
+    string password=2;
+}
+message LoginResp {
+    string accessToken=1;
+    int64 accessExpire=2;
+    int64 refreshAfter=3;
+}
+message Message {
+
+}
+
+message GenerateTokenReq {
+    int64 userId = 1;
+}
+message GenerateTokenResp {
+    string accessToken = 1;
+    int64  accessExpire = 2;
+    int64  refreshAfter = 3;
+  }
+
+service usercenter{
+    rpc login(LoginReq) returns(LoginResp);
+    rpc register(RegisterReq) returns(RegisterResp);
+    rpc info(Message) returns(UserDto);
+    rpc logout(Message) returns(Message);
+    rpc getByUserName(Message) returns(UserDto);
+    rpc getByUid(Message) returns(UserDto);
+    rpc generateToken(GenerateTokenReq) returns(GenerateTokenResp);
+
+}

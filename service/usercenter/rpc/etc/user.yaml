@@ -1,0 +1,24 @@
+Name: user.rpc
+ListenOn: 0.0.0.0:2001
+# Mode: dev
+# Etcd:
+#   Hosts:
+#   - 127.0.0.1:2379
+#   Key: user.rpc
+JwtAuth:
+  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+  AccessExpire: 31536000
+
+Log:
+  ServiceName: user.rpc
+  Level: error
+
+Redis:
+  Host: localhost:6379
+  Type: node
+  Pass: 
+DB:
+  DataSource: root:123456@tcp(localhost:3306)/fakeins?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+Cache:
+  - Host: localhost:6379
+    Pass: 

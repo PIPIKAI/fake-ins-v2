@@ -1,0 +1,52 @@
+syntax = "v1"
+
+type (
+	InfoReq {
+		ID uint `json:"id"`
+	}
+	InfoResp {
+		ID        uint `json:"id"`
+		UserName  string `json:"username"`
+		Telephone string `json:"telephone"`
+		Name      string `json:"name"`
+		Gender    string `json:"gender"`
+		Email     string `json:"email"`
+		Photo     string `json:"photo"`
+		Website   string `json:"website"`
+		Bio       string `json:"bio"`
+		Birthday  string `json:"birthday"`
+		WatchsCounts  uint `json:"watchs_counts"`
+		FansCounts    uint `json:"fans_counts"`
+		CommentsCount uint `json:"comments_count"`
+		PostsCounts   uint `json:"posts_counts"`
+	}
+)
+
+type UserDto  {
+	ID        uint `json:"id"`
+	UserName  string `json:"username"`
+	Name      string `json:"name"`
+	Photo     string `json:"photo"`
+	Website   string `json:"website"`
+	Bio       string `json:"bio"`
+	WatchsCounts  uint `json:"watchs_counts"`
+	FansCounts    uint `json:"fans_counts"`
+	PostsCounts   uint `json:"posts_counts"`
+	IsWatched    bool `json:"is_watched"`
+}
+type (
+	EditInfoReq {
+		UserName    string `json:"user_name" example:"zzk"`
+		Name        string `json:"name" example:"志明"`
+		PhotoBase64 string `json:"photo_base64"`
+		Photourl    string `json:"photourl"`
+		Website     string `json:"website" example:"https://example.com"`
+		Bio         string `json:"bio" example:"my bio"`
+		Gender      string `json:"gender" example:"mele"`
+		Birthday    string `json:"birthday" example:"2022-12-12"`
+	}
+	EditInfoResp {
+		Status bool `json:"status"`
+		UpdataTime int64 `json:"updata_time"`
+	}
+)

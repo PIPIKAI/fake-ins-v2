@@ -1,0 +1,44 @@
+syntax = "v1"
+
+
+type (
+    AttemptReq  {
+        Username     string `json:"username" binding:"required" example:"zzk"`
+        Name         string `json:"name" binding:"required" example:"志明"`
+        Password     string `json:"password" binding:"required" example:"123456"`
+        EmailOrPhone string `json:"emailorphone" binding:"required" example:"1652091948@qq.com"`
+    }
+    AttemptResp{
+        Ok bool `json:"ok"`
+        Reason string `json:"reason"`
+    }
+)
+type (
+    RegisterReq  {
+        Username     string `json:"username" binding:"required" example:"zzk"`
+        Name         string `json:"name" binding:"required" example:"志明"`
+        Password     string `json:"password" binding:"required" example:"123456"`
+        EmailOrPhone string `json:"emailorphone" binding:"required" example:"1652091948@qq.com"`
+        Telephone    string `json:"telephone" swaggerignore:"true" example:""`
+        Email        string `json:"email" swaggerignore:"true" example:""`
+        Birthday     string `json:"birthday" example:"2022-12-12"`
+        Code         string `json:"code" example:"1234"`
+    }
+    RegisterResp {
+		AccessToken  string `json:"accessToken"`
+		AccessExpire int64  `json:"accessExpire"`
+		RefreshAfter int64  `json:"refreshAfter"`
+	}
+)
+
+type (
+    LoginReq {
+        EmailOrPhoneOrUsername string `json:"emailorphoneorusername" binding:"required" example:"zzk"`
+        Password               string `json:"password" binding:"required" example:"123456"`
+    }
+    LoginResp {
+        AccessToken  string `json:"accessToken"`
+		AccessExpire int64  `json:"accessExpire"`
+		RefreshAfter int64  `json:"refreshAfter"`
+    }
+)
